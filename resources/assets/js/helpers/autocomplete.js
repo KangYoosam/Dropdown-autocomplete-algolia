@@ -10,11 +10,11 @@ export const userautocomplete = (selector, { hitsPerPage }) => {
         hint: true,
     }, {
         source: autocomplete.sources.hits(index, { hitsPerPage: hitsPerPage }),
+        displayKey: 'name',
         templates: {
             suggestion (suggestion) {
                 return '<span>' + suggestion._highlightResult.name.value + '</span>';
             },
-            displayKey: 'name',
             empty: '<div class="aa-empty">No people found</div>'
         }
     });
