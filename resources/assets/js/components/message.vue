@@ -44,7 +44,13 @@
         },
         methods : {
             send () {
-                console.log('obj');
+                const recipientIds = this.recipients.map((r) => {
+                    return r.id
+                })
+                axios.post('/messages', {
+                    body: this.body,
+                    recipientIds: recipientIds,
+                })
             },
             addRecipient (recipient) {
                 var existing = this.recipients.find((r) => {

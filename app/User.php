@@ -27,4 +27,25 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function avatar($size = 45)
+    {
+        return 'https://www.gravatar.com/avatar/' . md5($this->email) . '?s=' . $size . '&d=mm';
+    }
+
+    public function toSearchableArray()
+    {
+        $properties = $this->toArray();
+
+        $properties['avatar_small'] = $this->avatar(25);
+        $properties['avatar'] = $this->avatar();
+        $properties['country'] = $this->country;
+
+        return $properties;
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 }

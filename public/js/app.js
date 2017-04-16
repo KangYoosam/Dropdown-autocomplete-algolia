@@ -48940,7 +48940,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         send: function send() {
-            console.log('obj');
+            var recipientIds = this.recipients.map(function (r) {
+                return r.id;
+            });
+            axios.post('/messages', {
+                body: this.body,
+                recipientIds: recipientIds
+            });
         },
         addRecipient: function addRecipient(recipient) {
             var existing = this.recipients.find(function (r) {
@@ -48998,7 +49004,7 @@ var userautocomplete = function userautocomplete(selector, _ref) {
         displayKey: 'name',
         templates: {
             suggestion: function suggestion(_suggestion) {
-                return '<span>' + _suggestion._highlightResult.name.value + '</span>';
+                return '<img src="' + _suggestion.avatar + '"><span>' + _suggestion._highlightResult.name.value + '</span><span class="pull-right">' + _suggestion.country.name + '</span>';
             },
 
             empty: '<div class="aa-empty">No people found</div>'

@@ -13,7 +13,7 @@ export const userautocomplete = (selector, { hitsPerPage }) => {
         displayKey: 'name',
         templates: {
             suggestion (suggestion) {
-                return '<span>' + suggestion._highlightResult.name.value + '</span>';
+                return '<img src="' + suggestion.avatar + '"><span>' + suggestion._highlightResult.name.value + '</span><span class="pull-right">' + suggestion.country.name + '</span>';
             },
             empty: '<div class="aa-empty">No people found</div>'
         }
